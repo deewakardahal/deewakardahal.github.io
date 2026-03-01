@@ -1,96 +1,137 @@
+/* Premium Historical Palette */
 :root {
-    --gold: #b8860b;
-    --parchment: #f4f1ea;
-    --ink: #1a1a1a;
+    --marble: #fcfaf5;      /* Light parchment */
+    --stone: #e8e2d6;       /* Darker parchment for depth */
+    --gold-leaf: #b8860b;   /* Metallic gold */
+    --deep-ink: #1e1e1e;    /* Soft black for readability */
+    --ancient-red: #800000; /* For subtle accents/hover */
+    --shadow: rgba(0, 0, 0, 0.05);
 }
 
 body {
-    background-color: var(--parchment);
-    color: var(--ink);
+    background-color: var(--marble);
+    background-image: radial-gradient(#e8e2d6 0.5px, transparent 0.5px); /* Subtle paper texture */
+    background-size: 20px 20px;
+    color: var(--deep-ink);
     font-family: 'Cormorant Garamond', serif;
+    line-height: 1.6;
     margin: 0;
-    padding: 5% 10%; /* Elegant wide margins */
+    padding: 0;
 }
 
-/* Header Setup */
-.header-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Container for centered look */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header Refinement */
+.site-header {
+    text-align: left;
+    padding-bottom: 20px;
+    border-bottom: 3px double var(--gold-leaf); /* Double line for "Ancient" look */
+    margin-bottom: 30px;
 }
 
 .logo-text {
     font-family: 'Cinzel', serif;
-    font-size: 2.8rem;
-    margin-bottom: 0;
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+    margin: 0;
+    color: var(--deep-ink);
+    text-shadow: 2px 2px 4px var(--shadow);
 }
 
 .tagline {
-    font-style: italic;
-    font-size: 1.2rem;
-    color: #555;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold-leaf);
+    display: block;
+    margin-top: -5px;
 }
 
-.header-divider {
-    border: 0;
-    height: 1px;
-    background: var(--ink);
-    margin-top: 10px;
-}
-
-/* Profile Circle */
-.profile-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    overflow: hidden;
-}
-
-/* Navigation - Desktop */
+/* Navigation Buttons */
 .main-nav ul {
-    list-style: none;
     display: flex;
-    gap: 40px;
-    padding: 20px 0;
+    justify-content: center;
+    gap: 50px;
+    list-style: none;
+    padding: 0;
+    margin: 40px 0;
 }
 
 .main-nav button {
+    font-family: 'Cinzel', serif;
     background: none;
     border: none;
-    font-family: 'Cinzel', serif;
     font-size: 1.1rem;
     cursor: pointer;
-    border-bottom: 2px solid transparent;
+    color: var(--deep-ink);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.main-nav button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--gold-leaf);
+    transition: width 0.4s ease;
 }
 
 .main-nav button:hover {
-    border-bottom: 2px solid var(--gold);
+    color: var(--gold-leaf);
+    letter-spacing: 2px;
 }
 
-.mobile-menu-icon { display: none; }
+.main-nav button:hover::after {
+    width: 100%;
+}
 
-/* Mobile View (The bottom sketch) */
+/* Article Grid (The 3 boxes from your sketch) */
+.article-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.article-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--stone);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow);
+    border-color: var(--gold-leaf);
+}
+
+.article-img-placeholder {
+    width: 120px;
+    height: 120px;
+    background-color: var(--stone);
+    flex-shrink: 0;
+}
+
+.article-info h3 {
+    font-family: 'Cinzel', serif;
+    margin: 0 0 10px 0;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    body { padding: 20px; }
-    
-    .header-main { flex-direction: column; text-align: center; }
-    
-    .logo-text { font-size: 1.8rem; }
-
-    .mobile-menu-icon {
-        display: block;
-        font-size: 2rem;
-        cursor: pointer;
-        text-align: right;
-    }
-
-    #nav-links {
-        display: none; /* Hide menu initially */
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-    }
-
-    #nav-links.active { display: flex; }
+    .logo-text { font-size: 2rem; }
+    .main-nav ul { gap: 20px; flex-wrap: wrap; }
 }
