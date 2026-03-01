@@ -94,6 +94,21 @@ body {
     width: 100%;
 }
 
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This prevents the image from stretching */
+    object-position: center; /* This keeps the face/center of the image visible */
+}
+
+.profile-circle img {
+    filter: sepia(0.5) contrast(1.1);
+    transition: filter 0.5s ease;
+}
+
+.profile-circle:hover img {
+    filter: sepia(0); /* Turns back to normal color when you hover! */
+}
 /* Article Grid (The 3 boxes from your sketch) */
 .article-list {
     display: grid;
