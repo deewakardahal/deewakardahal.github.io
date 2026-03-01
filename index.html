@@ -1,34 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Oracle of Delphi | Philosophy & Art</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-main">
-            <div class="title-group">
-                <h1 class="logo-text">The Oracle of Delphi</h1>
-                <span class="tagline">— Philosophy</span>
-            </div>
-            <div class="profile-circle">
-                <img src="https://via.placeholder.com/150" alt="Oracle Profile">
-            </div>
-        </div>
-        <hr class="header-divider">
-    </header>
 
-    <nav class="main-nav">
-        <div class="mobile-menu-icon" onclick="toggleMenu()">&#9776;</div>
-        
-        <ul id="nav-links">
-            <li><button onclick="showSection('home')">Home</button></li>
-            <li><button onclick="showSection('articles')">Articles</button></li>
-            <li><button onclick="showSection('about')">About</button></li>
-            <li><button onclick="showSection('comments')">Comments</button></li>
-        </ul>
-    </nav>
+    <div class="container">
+        <header class="site-header">
+            <div class="header-main">
+                <div class="title-group">
+                    <h1 class="logo-text">The Oracle of Delphi</h1>
+                    <span class="tagline">— Philosophy</span>
+                </div>
+                <div class="profile-circle">
+                    <img src="https://via.placeholder.com/150" alt="Oracle Profile">
+                </div>
+            </div>
+            <hr class="header-divider">
+        </header>
 
-    <main id="content-area">
+        <nav class="main-nav">
+            <div class="mobile-menu-icon" onclick="toggleMenu()">&#9776;</div>
+            
+            <ul id="nav-links">
+                <li><button onclick="showSection('home')">Home</button></li>
+                <li><button onclick="showSection('articles')">Articles</button></li>
+                <li><button onclick="showSection('about')">About</button></li>
+                <li><button onclick="showSection('comments')">Comments</button></li>
+            </ul>
+        </nav>
+
+        <main id="content-area">
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-img-placeholder"></div>
+                    <div class="article-info">
+                        <h3>The First Prophecy</h3>
+                        <p>Exploring the intersection of ancient wisdom and modern thought...</p>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-img-placeholder"></div>
+                    <div class="article-info">
+                        <h3>Stoic Echoes</h3>
+                        <p>How the voices of the past shape our digital silence today.</p>
+                    </div>
+                </div>
+            </div>
         </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
+</html>
