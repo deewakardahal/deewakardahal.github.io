@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Oracle of Delphi | Philosophy & Art</title>
+    <title>The Oracle of Delphi</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,15 +17,14 @@
                     <span class="tagline">— Philosophy</span>
                 </div>
                 <div class="profile-circle">
-                    <img src="profile.jpg" alt="The Oracle Profile">
+                    <img src="profile.jpg" alt="Oracle Logo">
                 </div>
             </div>
-            <hr class="header-divider">
+            <hr class="header-divider-gold">
+            <hr class="header-divider-gold">
         </header>
 
         <nav class="main-nav">
-            <div class="mobile-menu-icon" onclick="toggleMenu()">&#9776;</div>
-            
             <ul id="nav-links">
                 <li><button onclick="showSection('home')">Home</button></li>
                 <li><button onclick="showSection('articles')">Articles</button></li>
@@ -35,23 +34,13 @@
         </nav>
 
         <main id="content-area">
-            <div class="article-list">
-                <div class="article-card">
-                    <div class="article-img-placeholder"></div>
-                    <div class="article-info">
-                        <h3>The First Prophecy</h3>
-                        <p>Exploring the intersection of ancient wisdom and modern thought...</p>
-                    </div>
+            <div class="article-list" id="article-container">
                 </div>
-                <div class="article-card">
-                    <div class="article-img-placeholder"></div>
-                    <div class="article-info">
-                        <h3>Stoic Echoes</h3>
-                        <p>How the voices of the past shape our digital silence today.</p>
-                    </div>
-                </div>
-            </div>
         </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2026 Deewakar Dahal</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>
