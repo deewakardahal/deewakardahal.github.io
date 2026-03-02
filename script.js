@@ -1,37 +1,60 @@
-const articles = [
-    { title: "The First Prophecy", desc: "Exploring the intersection of ancient wisdom and modern thought..." },
-    { title: "Stoic Echoes", desc: "How the voices of the past shape our digital silence today." },
-    { title: "The Delphic Maxims", desc: "147 ancient rules to live a balanced life." },
-    { title: "Plato's Shadow", desc: "Understanding reality in a world of digital screens." },
-    { title: "The Eternal Flame", desc: "Why philosophy never truly dies, it only evolves." }
-];
+// Hamburger menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
 
-function loadArticles() {
-    const container = document.getElementById('article-container');
-    container.innerHTML = ''; // Clear current content
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
 
-    articles.forEach(art => {
-        const card = `
-            <div class="article-card">
-                <div style="width:60px; height:60px; background:#e8e2d6; flex-shrink:0;"></div>
-                <div class="article-info">
-                    <h3 style="font-family:'Cinzel', serif; margin:0;">${art.title}</h3>
-                    <p style="margin:5px 0 0 0;">${art.desc}</p>
-                </div>
-            </div>
-        `;
-        container.innerHTML += card;
-    });
-}
-
-function showSection(sectionId) {
-    const container = document.getElementById('article-container');
-    if (sectionId === 'home') {
-        loadArticles();
-    } else {
-        container.innerHTML = `<h2 style="text-align:center; font-family:'Cinzel'">${sectionId.toUpperCase()}</h2><p style="text-align:center">The archives for ${sectionId} are currently being transcribed...</p>`;
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const target = document.querySelector(targetId);
+    
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
     }
+    
+    // Close mobile menu after clicking a link
+    navLinks.classList.remove('active');
+  });
+});
+
+// Comments system (client-side only – stored in localStorage)
+let comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+function renderComments() {
+  const list = document.getElementById('commentList');
+  list.innerHTML = '';
+  
+  comments.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'comment';
+    div.innerHTML = `
+      <div class="comment-header">${c.name}</div>
+      <div class="comment-email">${c.email}</div>
+      <div class="comment-text">${c.comment.replace(/\n/g, '<br>')}</div>
+    `;
+    list.appendChild(div);
+  });
 }
 
-// Initialize Home Page with 5 articles
-window.onload = loadArticles;
+document.getElementById('commentForm').addEventListener('submit', e => {
+  e.preventDefault();
+  
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const comment = document.getElementById('comment').value.trim();
+
+  if (name && email && comment) {
+    comments.unshift({ name, email, comment, date: new Date().toLocaleString() });
+    localStorage.setItem('comments', JSON.stringify(comments));
+    renderComments();
+    e.target.reset();
+  }
+});
+
+// Load saved comments when page loads
+renderComments();
