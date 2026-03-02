@@ -42,6 +42,25 @@ if (commentForm && commentList) {
       commentForm.reset();
     }
   });
+// Auto-sort article cards by date (newest first) on pages with .articles-grid
+document.addEventListener('DOMContentLoaded', function () {
+  // ... your existing code (hamburger, comments, etc.) stays here ...
 
+  const grid = document.querySelector('.articles-grid');
+  if (grid) {
+    const cards = Array.from(grid.querySelectorAll('.card'));
+
+    // Sort cards by data-date descending (newest → oldest)
+    cards.sort((a, b) => {
+      const dateA = a.getAttribute('data-date') || '0000-00-00'; // fallback
+      const dateB = b.getAttribute('data-date') || '0000-00-00';
+      return dateB.localeCompare(dateA); // string compare works for YYYY-MM-DD
+    });
+
+    // Remove old cards and re-add in sorted order
+    grid.innerHTML = ''; // clear current content
+    cards.forEach(card => grid.appendChild(card));
+  }
+});
   renderComments();
 }
