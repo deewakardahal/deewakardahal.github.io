@@ -1,37 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deewakar Dahal | Political Commentary</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Opinion – Commentary on the World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Deewakar Dahal</h1>
-        <p>Contemporary Issues & Political Analysis</p>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
-        </nav>
-    </header>
+  <nav>
+    <div class="nav-container">
+      <div class="menu-toggle" id="menuToggle">≡</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#articles">Articles</a>
+        <a href="#about">About</a>
+        <a href="#comments">Comments</a>
+      </div>
+    </div>
+  </nav>
 
-    <main>
-        <section id="articles">
-            <h2>Recent Articles</h2>
-            <ul>
-                <li>
-                    <span class="date">Oct 24, 2023</span>
-                    <a href="articles/first-post.html">The State of Contemporary Politics</a>
-                </li>
-                </ul>
-        </section>
-    </main>
+  <header id="home">
+    <h1 class="logo">THE ORACLE OF <span>DELPHI</span></h1>
+    <p class="subtitle">— PHILOSOPHY —</p>
+    <div class="gold-line"></div>
+    <div class="divider"></div>
+  </header>
 
-    <footer>
-        <p>&copy; 2023 Deewakar Dahal</p>
-    </footer
+  <main>
+    <section class="hero" id="home-content">
+      <h2>Opinion – Commentary on the World</h2>
+      <p>Welcome to the world seen through the lens of a normal human being.</p>
+    </section>
 
+    <section id="articles">
+      <h2>Latest Reflections</h2>
+      <div class="articles-grid">
+        <div class="card">
+          <img src="https://thumbs.dreamstime.com/b/close-up-marble-bust-historic-figure-veined-surface-neutral-backdrop-close-up-marble-bust-historic-figure-394433762.jpg" alt="Article Image">
+          <div class="card-content">
+            <h3>The Silence of the Agora</h3>
+            <p>Exploring how digital noise drowns out the quiet wisdom of ancient public discourse...</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://as1.ftcdn.net/jpg/14/22/21/60/1000_F_1422216075_dyzAz9U8N1XFrKZGv6fpffGXFFhRvhec.jpg" alt="Article Image">
+          <div class="card-content">
+            <h3>Modern Stoic in a Chaotic Feed</h3>
+            <p>Lessons from Marcus Aurelius that still apply when doomscrolling threatens the soul...</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://img.freepik.com/free-vector/yellow-parchment_53876-91513.jpg?semt=ais_rp_progressive&w=740&q=80" alt="Article Image">
+          <div class="card-content">
+            <h3>Echoes from Delphi 2.0</h3>
+            <p>What would the Pythia say if she had access to today's algorithms and echo chambers...</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://thumbs.dreamstime.com/b/elegant-old-paper-background-texture-12898151.jpg" alt="Article Image">
+          <div class="card-content">
+            <h3>The Virtue of Unfollowing</h3>
+            <p>Why digital minimalism might be the true path to eudaimonia in our age...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About the Author</h2>
+      <div class="about-content">
+        <img src="https://www.shutterstock.com/shutterstock/photos/2604415501/display_1500/stock-photo-smiling-man-in-formal-attire-poses-with-crossed-arms-on-a-plain-background-during-a-professional-2604415501.jpg" alt="Deewakar Dahal" class="profile">
+        <h3>Deewakar Dahal</h3>
+        <p>A thinker navigating the intersection of ancient philosophy and modern chaos. Not a scholar, not a guru — just someone trying to make sense of it all through quiet observation, late-night reading, and too much coffee. Writing here to remind myself (and maybe others) that wisdom doesn't expire, even when timelines move at light speed.</p>
+        <p>Contact: <a href="mailto:your.email@example.com" class="email-link">your.email@example.com</a></p>
+      </div>
+    </section>
+
+    <section id="comments">
+      <h2>Comments & Reflections</h2>
+      <form class="comments-form" id="commentForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="comment" rows="5" placeholder="Your thoughts..." required></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+
+      <div class="comment-list" id="commentList"></div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Deewakar Dahal – All thoughts are my own.
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
