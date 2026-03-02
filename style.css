@@ -1,146 +1,122 @@
-/* Premium Historical Palette */
 :root {
     --marble: #fcfaf5;
-    --stone: #e8e2d6;
     --gold-leaf: #b8860b;
     --deep-ink: #1e1e1e;
-    --shadow: rgba(0, 0, 0, 0.05);
+    --stone: #e8e2d6;
 }
 
 body {
     background-color: var(--marble);
-    background-image: radial-gradient(#e8e2d6 0.5px, transparent 0.5px);
-    background-size: 20px 20px;
     color: var(--deep-ink);
     font-family: 'Cormorant Garamond', serif;
-    line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 100%; /* Full width for the lines */
     margin: 0 auto;
-    padding: 40px 20px;
 }
 
-/* Header: Swapped to Right Alignment */
-.site-header {
-    padding-bottom: 20px;
-    border-bottom: 3px double var(--gold-leaf);
-    margin-bottom: 30px;
-}
-
+/* Header Layout: Left and Right */
 .header-main {
     display: flex;
-    /* This pushes the profile left and the text right */
-    flex-direction: row-reverse; 
-    justify-content: b;
+    justify-content: space-between; /* Pushes content to edges */
     align-items: center;
-}
-
-.title-group {
-    text-align: right; /* Aligns the text to the right edge */
+    padding: 20px 5%; /* Side padding for text and logo */
 }
 
 .logo-text {
     font-family: 'Cinzel', serif;
-    font-size: 3.2rem;
-    letter-spacing: 4px;
+    font-size: 2.5rem;
     margin: 0;
-    text-shadow: 2px 2px 4px var(--shadow);
 }
 
 .tagline {
     font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
     color: var(--gold-leaf);
     display: block;
 }
 
-/* Fixed Profile Circle */
 .profile-circle {
-    width: 80px;  /* This controls the actual size of the circle on your screen */
-    height: 80px; /* Must be the same as width for a perfect circle */
-    border-radius: 50%;
-    border: 2px solid var(--gold-leaf);
-    overflow: hidden; /* This is the most important line - it crops the image */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0; /* Prevents the circle from being squashed by the text */
-    box-shadow: 0 4px 15px var(--shadow);
-}
-
-.profile-circle img {
-    width: 100%;       /* Makes the image fill the width of the 80px circle */
-    height: 100%;      /* Makes the image fill the height of the 80px circle */
-    object-fit: cover; /* Crops the edges of the photo so it doesn't stretch */
-    object-position: center;
-    filter: sepia(0.5) contrast(1.1);
-    transition: filter 0.5s ease;
-}
-
-.profile-circle:hover img {
-    filter: sepia(0);
-}
-
-/* Navigation */
-.main-nav ul {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    list-style: none;
-    padding: 0;
-    margin: 40px 0;
-}
-
-.main-nav button {
-    font-family: 'Cinzel', serif;
-    background: none;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.4s ease;
-}
-
-.main-nav button:hover {
-    color: var(--gold-leaf);
-    transform: translateY(-2px);
-}
-
-/* Article Cards */
-.article-card {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    padding: 25px;
-    background: white;
-    border: 1px solid var(--stone);
-    margin-bottom: 20px;
-    transition: 0.3s;
-}
-
-.article-card:hover {
-    border-color: var(--gold-leaf);
-    box-shadow: 0 10px 20px var(--shadow);
-}
-
-.article-img-placeholder {
     width: 80px;
     height: 80px;
-    background: var(--stone);
+    border-radius: 50%;
+    border: 1px solid var(--gold-leaf);
+    overflow: hidden;
     flex-shrink: 0;
 }
 
-/* Mobile Responsiveness */
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Extended Golden Lines */
+.header-divider-gold {
+    border: 0;
+    height: 1px;
+    background: var(--gold-leaf);
+    margin: 4px 0;
+    width: 100%;
+}
+
+/* Navigation - Clean and Centered */
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    padding: 20px 0;
+}
+
+.main-nav button {
+    background: none;
+    border: none;
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Article List Padding */
+.article-list {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.article-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--stone);
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+/* Footer Style */
+.site-footer {
+    text-align: center;
+    padding: 40px 0 20px 0;
+}
+
+.site-footer p {
+    font-size: 0.7rem;
+    color: gray;
+    font-family: sans-serif; /* Clean modern font for copyright */
+}
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
     .header-main {
-        flex-direction: column; /* Stack on mobile */
+        flex-direction: column;
         text-align: center;
     }
-    .title-group { text-align: center; }
-    .logo-text { font-size: 2.2rem; }
+    .profile-circle { margin-top: 15px; }
+    .main-nav ul { gap: 15px; }
 }
