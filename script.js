@@ -1,66 +1,66 @@
-// Hamburger menu (works on every page)
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
+// =============================================
+// MOBILE HAMBURGER MENU + COMMENTS
+// =============================================
 
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
-}
+document.addEventListener('DOMContentLoaded', function () {
 
-// Comments only on comments.html
-const commentForm = document.getElementById('commentForm');
-const commentList = document.getElementById('commentList');
+  // ============== HAMBURGER MENU ==============
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks   = document.getElementById('navLinks');
 
-if (commentForm && commentList) {
-  let comments = JSON.parse(localStorage.getItem('comments')) || [];
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', function (e) {
+      e.stopImmediatePropagation();           // Prevent multiple triggers
+      navLinks.classList.toggle('active');
 
-  function renderComments() {
-    commentList.innerHTML = '';
-    comments.forEach(c => {
-      const div = document.createElement('div');
-      div.className = 'comment';
-      div.innerHTML = `
-        <div class="comment-header">${c.name}</div>
-        <div class="comment-email">${c.email}</div>
-        <div class="comment-text">${c.comment.replace(/\n/g, '<br>')}</div>
-      `;
-      commentList.appendChild(div);
+      // Change icon to × when open (nice UX)
+      this.textContent = navLinks.classList.contains('active') ? '✕' : '≡';
+    });
+
+    // Close menu when clicking any link (good for mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('active');
+        menuToggle.textContent = '≡';
+      });
     });
   }
 
-  commentForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const comment = document.getElementById('comment').value.trim();
+  // ============== COMMENTS (only runs if form exists) ==============
+  const commentForm = document.getElementById('commentForm');
+  if (commentForm) {
+    let comments = JSON.parse(localStorage.getItem('comments')) || [];
 
-    if (name && email && comment) {
-      comments.unshift({ name, email, comment });
-      localStorage.setItem('comments', JSON.stringify(comments));
-      renderComments();
-      commentForm.reset();
+    function renderComments() {
+      const list = document.getElementById('commentList');
+      if (!list) return;
+      list.innerHTML = '';
+      comments.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.innerHTML = `
+          <div class="comment-header">${c.name}</div>
+          <div class="comment-email">${c.email}</div>
+          <div class="comment-text">${c.comment.replace(/\n/g, '<br>')}</div>
+        `;
+        list.appendChild(div);
+      });
     }
-  });
-// Auto-sort article cards by date (newest first) on pages with .articles-grid
-document.addEventListener('DOMContentLoaded', function () {
-  // ... your existing code (hamburger, comments, etc.) stays here ...
 
-  const grid = document.querySelector('.articles-grid');
-  if (grid) {
-    const cards = Array.from(grid.querySelectorAll('.card'));
+    commentForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const commentText = document.getElementById('comment').value.trim();
 
-    // Sort cards by data-date descending (newest → oldest)
-    cards.sort((a, b) => {
-      const dateA = a.getAttribute('data-date') || '0000-00-00'; // fallback
-      const dateB = b.getAttribute('data-date') || '0000-00-00';
-      return dateB.localeCompare(dateA); // string compare works for YYYY-MM-DD
+      if (name && email && commentText) {
+        comments.unshift({ name, email, comment: commentText });
+        localStorage.setItem('comments', JSON.stringify(comments));
+        renderComments();
+        commentForm.reset();
+      }
     });
 
-    // Remove old cards and re-add in sorted order
-    grid.innerHTML = ''; // clear current content
-    cards.forEach(card => grid.appendChild(card));
+    renderComments();
   }
 });
-  renderComments();
-}
