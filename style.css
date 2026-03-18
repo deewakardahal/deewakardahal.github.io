@@ -358,4 +358,47 @@ footer {
     padding: 18px 40px;
     font-size: 1.25rem;
   }
+  /* ==================== PURE CSS HAMBURGER MENU ==================== */
+@media (max-width: 768px) {
+  .nav-container {
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block !important;
+    font-size: 2.5rem;
+    padding: 8px 15px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1100;
+  }
+
+  /* Hide the real checkbox */
+  #menu-checkbox {
+    display: none;
+  }
+
+  .nav-links {
+    display: none !important;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg);
+    padding: 25px 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+
+  /* Show menu when checkbox is checked */
+  #menu-checkbox:checked ~ .nav-links {
+    display: flex !important;
+  }
+
+  .nav-links a {
+    padding: 18px 40px;
+    font-size: 1.25rem;
+  }
+}
 }
