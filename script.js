@@ -1,32 +1,30 @@
-// =============================================
-// MOBILE HAMBURGER MENU + COMMENTS
-// =============================================
-
 document.addEventListener('DOMContentLoaded', function () {
 
-  // ============== HAMBURGER MENU ==============
+  // Hamburger Menu Fix for Mobile
   const menuToggle = document.getElementById('menuToggle');
-  const navLinks   = document.getElementById('navLinks');
+  const navLinks = document.getElementById('navLinks');
 
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', function (e) {
-      e.stopImmediatePropagation();           // Prevent multiple triggers
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      
       navLinks.classList.toggle('active');
 
-      // Change icon to × when open (nice UX)
+      // Change icon to × when open
       this.textContent = navLinks.classList.contains('active') ? '✕' : '≡';
     });
 
-    // Close menu when clicking any link (good for mobile)
+    // Close menu when tapping any link
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function () {
+      link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         menuToggle.textContent = '≡';
       });
     });
   }
 
-  // ============== COMMENTS (only runs if form exists) ==============
+  // Comments (keeps working as before)
   const commentForm = document.getElementById('commentForm');
   if (commentForm) {
     let comments = JSON.parse(localStorage.getItem('comments')) || [];
@@ -47,14 +45,14 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    commentForm.addEventListener('submit', function (e) {
+    commentForm.addEventListener('submit', e => {
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
-      const commentText = document.getElementById('comment').value.trim();
+      const comment = document.getElementById('comment').value.trim();
 
-      if (name && email && commentText) {
-        comments.unshift({ name, email, comment: commentText });
+      if (name && email && comment) {
+        comments.unshift({ name, email, comment });
         localStorage.setItem('comments', JSON.stringify(comments));
         renderComments();
         commentForm.reset();
